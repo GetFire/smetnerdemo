@@ -6,11 +6,13 @@ import com.smetnertest.dto.DtoUser;
 import lombok.Data;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Data
 public class ListWrapper {
     @Valid
+    @NotNull
     private List<DtoUser> users;
 
     @JsonCreator

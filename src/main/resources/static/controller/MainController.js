@@ -15,7 +15,7 @@ angular.module('smetnerdemo')
                 $scope.error = false;
             }, function (error) {
                 if (error.status === 400) {
-                    $scope.error = "Please amend phone numbers. The number of characters in the phone number must be 13";
+                    $scope.error = "Please amend phone numbers. The number of characters in the phone number must be 13 and choose type";
                 }
             });
         };
@@ -24,9 +24,9 @@ angular.module('smetnerdemo')
             return $scope.user = User.update({id: user.id}, user, function () {
                 $scope.error = false;
             }, function (error) {
-                $scope.error = "Please amend phone number";
+                $scope.error = "Please amend phone number and choose type";
                 User.get({id: user.id}, function (success) {
-                    user.phoneNumber = success.phoneNumber;
+                    angular.copy(success, user);
 
                 });
             });

@@ -1,8 +1,14 @@
 package com.smetnertest;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.smetnertest.dto.DtoUser;
+import com.smetnertest.model.ListWrapper;
 import com.smetnertest.model.Contact;
 import com.smetnertest.model.User;
+
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class TestHelper {
     public static final Long TEST_ID = 1L;
@@ -43,6 +49,18 @@ public class TestHelper {
         user.setMiddleName(TEST_MIDDLE_NAME);
         user.setLastName(TEST_LAST_NAME);
         return user;
+    }
+
+    public static ListWrapper getTestList() {
+        List<DtoUser> users = new ArrayList<>(5);
+        for (int i = 0; i < users.size(); i++) {
+            users.add(getTestDtoUser());
+        }
+        return new ListWrapper(users);
+    }
+
+    public static String asJsonString(final Object object) throws Exception {
+        return new ObjectMapper().writeValueAsString(object);
     }
 
 }

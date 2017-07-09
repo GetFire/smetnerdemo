@@ -36,7 +36,8 @@ public class DtoUser {
 
     @AssertTrue
     private boolean isRightContent() {
-        return phoneType.contains("Work") || phoneType.contains("Mobile") || phoneType.contains("Home");
+        return phoneType != null && (phoneType.contains("Work") || phoneType.contains("Mobile") || phoneType
+                .contains("Home"));
     }
 
 
