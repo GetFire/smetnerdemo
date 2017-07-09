@@ -17,19 +17,21 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
+import static org.mockito.MockitoAnnotations.initMocks;
 
 @RunWith(MockitoJUnitRunner.class)
-public class ContactServiceTest {
+public class ContactServiceImplTest {
     @Mock
     private ContactDao contactDao;
 
     @InjectMocks
-    private ContactService contactService;
+    private ContactServiceImpl contactService;
     private Contact contact;
     private DtoUser dtoUser;
 
     @Before
     public void setUp() {
+        initMocks(this);
         contact = getTestContact();
         dtoUser = getTestDtoUser();
     }

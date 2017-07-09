@@ -25,7 +25,7 @@ import static org.mockito.Mockito.when;
 
 
 @RunWith(MockitoJUnitRunner.class)
-public class UserServiceTest {
+public class UserServiceImplTest {
 
     private static final long ID = 1L;
     @Mock
@@ -34,7 +34,7 @@ public class UserServiceTest {
     private UserDao userDao;
 
     @InjectMocks
-    private UserService userService;
+    private UserServiceImpl userService;
     private User user;
     private DtoUser dtoUser;
 

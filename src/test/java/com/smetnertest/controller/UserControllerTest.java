@@ -77,7 +77,7 @@ public class UserControllerTest {
     @Test
     public void updateUserContact_ContactSuccessfullyUpdatedAndSuccessfullyPassValidation_ShouldReturnUpdatedUser() throws Exception {
         dtoUser.setPhoneNumber("+380930865783");
-        dtoUser.setPhoneType("Work");
+        dtoUser.setPhoneType("Unknown");
         when(userService.findOne(ID)).thenReturn(dtoUser);
         when(contactService.updateContact(dtoUser))
                 .thenReturn(contact);
