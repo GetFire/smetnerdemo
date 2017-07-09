@@ -1,4 +1,4 @@
-#**How To**
+# **How To**
 ## **Run app**
 Just open Your favourite IDE and run DemoApplication.class
 ## **Get access to H2 DB**
