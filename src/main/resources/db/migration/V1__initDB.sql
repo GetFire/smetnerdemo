@@ -3,7 +3,7 @@ CREATE SCHEMA IF NOT EXISTS smetnerdemo;
 CREATE TABLE IF NOT EXISTS smetnerdemo.contacts(
 id BIGINT NOT NULL PRIMARY KEY,
 phone_number VARCHAR (60) NOT NULL,
-type_number VARCHAR(60) NULL,
+type_number VARCHAR(60) DEFAULT 'Unknown',
 comment VARCHAR (60) NULL
 );
 

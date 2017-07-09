@@ -23,4 +23,4 @@ spring:
         default_schema: smetnerdemo
     hibernate:
       ddl-auto: update
-      show_sql: true
+    show-sql: true

@@ -53,16 +53,16 @@
                                 autofocus>
                             <option disabled>Choose phone type</option>
                             <option selected value="Mobile">Mobile</option>
-                            <option value="Work">Work</option>
                             <option value="Home">Home</option>
+                            <option value="Unknown">Unknown</option>
                         </select>
                     </td>
                     <td ng-show="editAll">
                         <select ng-model="user.phoneType">
                             <option disabled>Choose phone type</option>
                             <option selected value="Mobile">Mobile</option>
-                            <option value="Work">Work</option>
                             <option value="Home">Home</option>
+                            <option value="Unknown">Unknown</option>
                         </select>
                     </td>
                     <td ng-hide="user.editComment||editAll" ng-dblclick="editComment(user)">{{user.comment}}</td>

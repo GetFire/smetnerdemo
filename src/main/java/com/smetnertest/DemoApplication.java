@@ -7,6 +7,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
 
 @SpringBootApplication
 public class DemoApplication extends SpringBootServletInitializer {
@@ -17,6 +18,7 @@ public class DemoApplication extends SpringBootServletInitializer {
     }
 
     @Bean
+    @Profile("default")
     ServletRegistrationBean h2Servlet() {
         ServletRegistrationBean registration = new ServletRegistrationBean(new WebServlet());
         registration.addUrlMappings("/console/*");
