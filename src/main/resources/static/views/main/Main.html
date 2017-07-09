@@ -1,0 +1,82 @@
+<div class="container" ng-init="getAllUsers()" style="margin-top: 50px">
+    <div ng-show="error">
+        <div class="alert alert-danger">{{error}}</div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6 col-md-12">
+
+            <div class="container col-xs-6">
+                <h3>Double click to change single fields</h3>
+            </div>
+
+            <div class="container col-xs-offset-10">
+                <div>
+                    <button ng-show="!editAll" type="button" class="btn btn-warning btn-md"
+                            ng-click="editAll=!editAll">Edit All
+                    </button>
+                    <div class="btn-group" ng-show="editAll">
+                        <button ng-show="editAll" ng-click="cancel()" class="btn btn-danger">Cancel</button>
+                        <button ng-show="editAll" ng-click="saveAll(allUsers)" class="btn btn-success">Save All
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Middle Name</th>
+                    <th>Last Name</th>
+                    <th>Number (editable)</th>
+                    <th>Type (editable)</th>
+                    <th>Comment (editable)</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="user in allUsers">
+                    <td>{{user.firstName}}</td>
+                    <td>{{user.middleName}}</td>
+                    <td>{{user.lastName}}</td>
+                    <td ng-hide="user.editPhone||editAll" ng-dblclick="editPhone(user)">{{user.phoneNumber}}</td>
+                    <td ng-show="user.editPhone">
+                        <input type="tel" ng-blur="donePhone(user)" ng-model="user.phoneNumber"
+                               autofocus/>
+                    </td>
+                    <td ng-show="editAll">
+                        <input id="phone" type="text" ng-model="user.phoneNumber"/>
+                    </td>
+                    <td ng-hide="user.editType||editAll" ng-dblclick="editType(user)">{{user.phoneType}}</td>
+                    <td ng-show="user.editType">
+                        <select ng-blur="doneType(user)" ng-model="user.phoneType"
+                                autofocus>
+                            <option disabled>Choose phone type</option>
+                            <option selected value="Mobile">Mobile</option>
+                            <option value="Work">Work</option>
+                            <option value="Home">Home</option>
+                        </select>
+                    </td>
+                    <td ng-show="editAll">
+                        <select ng-model="user.phoneType">
+                            <option disabled>Choose phone type</option>
+                            <option selected value="Mobile">Mobile</option>
+                            <option value="Work">Work</option>
+                            <option value="Home">Home</option>
+                        </select>
+                    </td>
+                    <td ng-hide="user.editComment||editAll" ng-dblclick="editComment(user)">{{user.comment}}</td>
+                    <td ng-show="user.editComment">
+                        <input ng-blur="doneComment(user)" ng-model="user.comment"
+                               autofocus/>
+                    </td>
+                    <td ng-show="editAll">
+                        <input ng-model="user.comment"/>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</div>

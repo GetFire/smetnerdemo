@@ -1,0 +1,20 @@
+CREATE SCHEMA IF NOT EXISTS smetnerdemo;
+
+CREATE TABLE IF NOT EXISTS smetnerdemo.contacts(
+id BIGINT NOT NULL PRIMARY KEY,
+phone_number VARCHAR (60) NOT NULL,
+type_number VARCHAR(60) NULL,
+comment VARCHAR (60) NULL
+);
+
+CREATE TABLE IF NOT EXISTS smetnerdemo.users(
+id BIGINT NOT NULL PRIMARY KEY,
+contact_id INT NOT NULL,
+first_name VARCHAR (60) NOT NULL,
+middle_name VARCHAR (60) NULL,
+last_name VARCHAR (60) NOT NULL,
+CONSTRAINT CONTACT_ID
+FOREIGN KEY (contact_id)
+REFERENCES smetnerdemo.contacts(id)
+ON DELETE SET NULL
+ON UPDATE CASCADE);

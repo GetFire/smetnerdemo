@@ -1,0 +1,26 @@
+spring:
+  profiles:
+    active: default
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        default_schema: smetnerdemo
+server:
+  port: 8080
+---
+spring:
+  profiles: prod
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: root
+  jpa:
+    properties:
+      hibernate:
+        default_schema: smetnerdemo
+    hibernate:
+      ddl-auto: update
+      show_sql: true
