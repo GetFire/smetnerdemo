@@ -61,4 +61,8 @@ angular.module('smetnerdemo')
             user = $scope.update(user);
         };
 
+        $scope.getReport=function () {
+
+        }
+
     });

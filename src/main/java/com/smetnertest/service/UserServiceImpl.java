@@ -15,7 +15,7 @@ import java.util.List;
  * Business logic layer for {@link com.smetnertest.model.User}.
  */
 
-@Service
+@Service("userService")
 @Transactional
 public class UserServiceImpl implements UserService {
     private UserMapper userMapper;

@@ -27,4 +27,5 @@ public class User extends AbstractModel {
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "contact_id")
     private Contact contact;
+
 }

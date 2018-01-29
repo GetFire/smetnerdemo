@@ -12,7 +12,7 @@ import javax.transaction.Transactional;
  * Business logic layer for {@link com.smetnertest.model.Contact}.
  */
 
-@Service
+@Service("contactService")
 @Transactional
 public class ContactServiceImpl implements ContactService {
     private ContactDao contactDao;
