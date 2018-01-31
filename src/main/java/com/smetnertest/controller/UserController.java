@@ -87,7 +87,7 @@ public class UserController {
     @GetMapping("/report/pdf")
     public ModelAndView reportPdf() {
         JasperReportsPdfView pdfReport = new JasperReportsPdfView();
-        pdfReport.setUrl("classpath:users.jrxml");
+        pdfReport.setUrl("classpath:users1.jrxml");
         pdfReport.setApplicationContext(applicationContext);
         Map<String, Object> params = new HashMap<>();
         params.put("datasource", userService.getAllUsers());
@@ -97,7 +97,7 @@ public class UserController {
     @GetMapping("/report/html")
     public ModelAndView reportHtml() {
         JasperReportsHtmlView htmlReport = new JasperReportsHtmlView();
-        htmlReport.setUrl("classpath:users.jrxml");
+        htmlReport.setUrl("classpath:users1.jrxml");
         htmlReport.setApplicationContext(applicationContext);
         Map<String, Object> params = new HashMap<>();
         params.put("datasource", userService.getAllUsers());

@@ -24,7 +24,7 @@ spring:
         default_schema: smetnerdemo
     hibernate:
       ddl-auto: update
-    show-sql: true
+    show-sql: false
 
 server:
   port: 9191
