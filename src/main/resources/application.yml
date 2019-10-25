@@ -9,7 +9,8 @@ spring:
       hibernate:
         default_schema: smetnerdemo
 server:
-  port: 8080
+  port: 9091
+
 ---
 spring:
   profiles: prod
@@ -23,4 +24,7 @@ spring:
         default_schema: smetnerdemo
     hibernate:
       ddl-auto: update
-    show-sql: true
+    show-sql: false
+
+server:
+  port: 9191
