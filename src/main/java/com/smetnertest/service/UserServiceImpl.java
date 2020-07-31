@@ -18,15 +18,17 @@ import java.util.List;
 @Service("userService")
 @Transactional
 public class UserServiceImpl implements UserService {
+    @Autowired
     private UserMapper userMapper;
+    @Autowired
     private UserDao userDao;
 
-    @Autowired
-    public UserServiceImpl(UserMapper userMapper, UserDao userDao) {
-        this.userMapper = userMapper;
-        this.userDao = userDao;
+    @Override
+    public DtoUser getUser(String lastName) {
+        return userMapper.fromUserToDtoUser(userDao.findByLastName(lastName));
     }
 
+    @Override
     public DtoUser updateUser(DtoUser dtoUser, long id) {
         User currentUser = userDao.findOne(id);
         if (currentUser != null && id == currentUser.getId()) {
@@ -38,10 +40,17 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
+    @Override
     public List<DtoUser> getAllUsers() {
         List<DtoUser> users = new ArrayList<>();
         userDao.findAll().forEach(user -> users.add(userMapper.fromUserToDtoUser(user)));
         return users;
+    }
+
+    @Override
+    public long saveUser(DtoUser dto) {
+        User user = userMapper.fromDtoUserToUser(dto);
+        return userDao.save(user).getId();
     }
 
     public DtoUser findOne(long id) {

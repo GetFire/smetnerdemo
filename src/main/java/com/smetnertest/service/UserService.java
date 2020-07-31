@@ -11,4 +11,8 @@ public interface UserService {
     List<DtoUser> getAllUsers();
 
     DtoUser findOne(long id);
+
+    long saveUser(DtoUser user);
+
+    DtoUser getUser(String lastName);
 }

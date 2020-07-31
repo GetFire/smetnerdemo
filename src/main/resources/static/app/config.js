@@ -6,6 +6,10 @@ mainApp.config(function ($routeProvider, $httpProvider) {
             controller: 'MainController',
             templateUrl: 'views/main/Main.html'
         })
+        .when('/add', {
+            controller: 'UserController',
+            templateUrl: 'views/users/CreateUser.html'
+        })
         .otherwise({redirectTo: '/'});
 
     $httpProvider.defaults.headers.common["X-Requested-With"] = 'XMLHttpRequest';

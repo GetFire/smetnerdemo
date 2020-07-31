@@ -1,6 +1,11 @@
 spring:
   profiles:
     active: default
+#
+#  data:
+#    jpa:
+#      repositories:
+#        bootstrap-mode: default
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
@@ -8,6 +13,10 @@ spring:
     properties:
       hibernate:
         default_schema: smetnerdemo
+  datasource:
+    url: jdbc:h2:mem:smetnerdemo
+    username: sa
+    password:
 server:
   port: 9091
 

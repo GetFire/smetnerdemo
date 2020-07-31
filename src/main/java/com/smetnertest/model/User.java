@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 /**
  * An entity class that represents a user.
@@ -16,7 +17,10 @@ import javax.persistence.Table;
 
 @Data
 @Entity
-@Table(name = "users")
+@Table(name = "users",
+        uniqueConstraints = @UniqueConstraint(
+                columnNames = {"last_name"}
+        ))
 public class User extends AbstractModel {
     @Column(name = "first_name", nullable = false)
     private String firstName;

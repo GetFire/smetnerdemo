@@ -1,5 +1,6 @@
 angular.module('smetnerdemo')
     .factory('User', ['$resource', function ($resource) {
+
         return $resource('/api/users/:id', {id: '@id'}, {
             update: {
                 method: 'PUT'
@@ -11,6 +12,10 @@ angular.module('smetnerdemo')
                 method: 'PUT',
                 url: '/api/users/all',
                 isArray: true
+            },
+            addUser: {
+                method: 'POST',
+                url: '/api/users/add'
             }
         });
     }]);

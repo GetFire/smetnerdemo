@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +26,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static java.util.Objects.isNull;
+import static org.springframework.http.HttpStatus.CONFLICT;
+import static org.springframework.http.HttpStatus.CREATED;
+import static org.springframework.http.HttpStatus.OK;
+
 /**
  * A REST controller to handle all {@link com.smetnertest.model.User} related
  * requests: get all users, edit user profile
@@ -39,7 +45,8 @@ public class UserController {
 
 
     @Autowired
-    public UserController(UserService userService, ContactService contactService, ApplicationContext applicationContext) {
+    public UserController(UserService userService, ContactService contactService,
+                          ApplicationContext applicationContext) {
         this.userService = userService;
         this.contactService = contactService;
         this.applicationContext = applicationContext;
@@ -49,9 +56,20 @@ public class UserController {
     public ResponseEntity<List<DtoUser>> getAllUser() {
         List<DtoUser> result = userService.getAllUsers();
         if (result != null) {
-            return new ResponseEntity<>(result, HttpStatus.OK);
+            return new ResponseEntity<>(result, OK);
         }
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+
+    @PostMapping("/add")
+    public ResponseEntity<DtoUser> addNewUser(@RequestBody DtoUser user) {
+        if (isNull(userService.getUser(user.getLastName()))) {
+            DtoUser result = new DtoUser();
+            result.setId(userService.saveUser(user));
+            return new ResponseEntity<>(result, CREATED);
+        }
+        return new ResponseEntity<>(CONFLICT);
     }
 
     @PutMapping("/{id}")
@@ -60,7 +78,7 @@ public class UserController {
         DtoUser user = userService.findOne(id);
         if (user != null && id == user.getId()) {
             contactService.updateContact(dtoUser);
-            return new ResponseEntity<>(user, HttpStatus.OK);
+            return new ResponseEntity<>(user, OK);
         }
         return new ResponseEntity<>(HttpStatus.BAD_GATEWAY);
     }
@@ -70,7 +88,7 @@ public class UserController {
         List<DtoUser> currentUsers = userService.getAllUsers();
         if (currentUsers.size() == dtoUsers.getUsers().size()) {
             dtoUsers.getUsers().forEach(contactService::updateContact);
-            return new ResponseEntity<List<DtoUser>>(userService.getAllUsers(), HttpStatus.OK);
+            return new ResponseEntity<List<DtoUser>>(userService.getAllUsers(), OK);
         }
         return new ResponseEntity<List<DtoUser>>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
@@ -79,7 +97,7 @@ public class UserController {
     public ResponseEntity<DtoUser> getUserById(@PathVariable("id") long id) {
         DtoUser user = userService.findOne(id);
         if (user != null && user.getId() == id) {
-            return new ResponseEntity<DtoUser>(user, HttpStatus.OK);
+            return new ResponseEntity<DtoUser>(user, OK);
         }
         return new ResponseEntity<DtoUser>(HttpStatus.NOT_FOUND);
     }

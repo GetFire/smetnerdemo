@@ -14,14 +14,14 @@
                     <button ng-show="!editAll" type="button" class="btn btn-warning btn-md"
                             ng-click="editAll=!editAll">Edit All
                     </button>
+                    <button ng-show="!editAll" ng-click="goToCreatePage()" class="btn btn-default">Add new user</button>
                   <a class=" button btn-info" href="/api/users/report/pdf">Get PDF</a>
                   <a class=" button btn-info" href="/api/users/report/html">Get HTML</a>
                   <a class=" button btn-info" href="/api/users/report/xls">Get XLS</a>
                   <a class=" button btn-info" href="/api/users/report/csv">Get CSV</a>
                     <div class="btn-group" ng-show="editAll">
                         <button ng-show="editAll" ng-click="cancel()" class="btn btn-danger">Cancel</button>
-                        <button ng-show="editAll" ng-click="saveAll(allUsers)" class="btn btn-success">Save All
-                        </button>
+                        <button ng-show="editAll" ng-click="saveAll(allUsers)" class="btn btn-success">Save All</button>
                     </div>
                 </div>
             </div>

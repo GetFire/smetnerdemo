@@ -1,5 +1,5 @@
 angular.module('smetnerdemo')
-    .controller('MainController', function ($scope, $rootScope, User) {
+    .controller('MainController', function ($scope, $rootScope, $location,  User) {
 
         $scope.editAll = false;
 
@@ -30,6 +30,10 @@ angular.module('smetnerdemo')
 
                 });
             });
+        };
+
+        $scope.goToCreatePage = function() {
+            $location.path("/add");
         };
 
         $scope.cancel = function () {
