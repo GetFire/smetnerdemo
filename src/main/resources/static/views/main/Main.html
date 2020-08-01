@@ -39,7 +39,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="user in allUsers">
+                <tr ng-repeat="user in allUsers" ng-class="{'highlight': user.id === newUserId}">
                     <td>{{user.firstName}}</td>
                     <td>{{user.middleName}}</td>
                     <td>{{user.lastName}}</td>
