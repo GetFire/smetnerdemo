@@ -1,7 +1,8 @@
 angular.module('smetnerdemo')
-    .controller('MainController', function ($scope, $rootScope, $location,  User) {
+    .controller('MainController', function ($scope, $rootScope, $location, User, delayService) {
 
         $scope.editAll = false;
+        $scope.delayNewUser = delayService(2000);
 
         $scope.getAllUsers = function () {
             var users = User.query({}, function () {
@@ -32,7 +33,7 @@ angular.module('smetnerdemo')
             });
         };
 
-        $scope.goToCreatePage = function() {
+        $scope.goToCreatePage = function () {
             $location.path("/add");
         };
 
@@ -65,7 +66,7 @@ angular.module('smetnerdemo')
             user = $scope.update(user);
         };
 
-        $scope.getReport=function () {
+        $scope.getReport = function () {
 
         }
 
